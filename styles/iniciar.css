@@ -1,0 +1,81 @@
+<style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            background: linear-gradient(to right, #434343, #000000);
+            /* fondo oscuro */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card {
+            background-color: rgba(255, 255, 255, 0.1);
+            /* fondo semitransparente */
+            padding: 30px 40px;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            /* sombra más visible */
+            backdrop-filter: blur(10px);
+            /* desenfoque para efecto "frosted glass" */
+            -webkit-backdrop-filter: blur(10px);
+            /* soporte en Safari */
+            width: 300px;
+        }
+
+        .card form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card div {
+            margin-bottom: 20px;
+        }
+
+        label {
+            margin-bottom: 5px;
+            display: block;
+            font-weight: bold;
+            color: white;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+
+        .buttons a {
+            text-decoration: none;
+            color: white;
+        }
+
+        .buttons button {
+            background-color: #007BFF;
+            border: none;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .buttons button:hover {
+            background-color: #0056b3;
+        }
+    </style>
