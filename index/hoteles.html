@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Open World - Hoteles</title>
+<link rel="stylesheet" href="/styles/hoteles.css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+</head>
+
+<body>
+<header class="header">
+    <a href="/index/index.html"><h1>Agencia de Viajes Open World</h1></a>
+</header>
+
+<nav class="nav">
+    <ul>
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="inciar.html">Iniciar Sesión</a></li>
+      <li><a href="hoteles.html">Hoteles</a></li>
+      <li><a href="vuelos.html  ">Vuelos</a></li>
+      <li><a href="#final">Contacto</a></li>
+    </ul>
+  </nav>
+
+<main>
+    <h1>Hoteles disponibles en Colombia</h1>
+
+    <!-- 🏨 Contenedor dinámico de tarjetas -->
+    <section id="lista-hoteles" class="hoteles-container">
+     <p class="cargando">Cargando hoteles...</p>
+    </section>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", async () => {
+     const SUPABASE_URL = 'https://umoxzhitoujluggspitx.supabase.co';
+     const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVtb3h6aGl0b3VqbHVnZ3NwaXR4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjExMTU2MTgsImV4cCI6MjA3NjY5MTYxOH0.7FahMznLDSsSaidDFUVpOc9Awy4iB5HQXxTkIL9RdN8';
+
+     const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+     const contenedor = document.getElementById("lista-hoteles");
+
+     try {
+        // 1️⃣ Obtener hoteles
+        const { data: hoteles, error: errHoteles } = await supabaseClient
+         .from('hoteles')
+         .select('id, nombre, destino_id, estrellas, precio_noche, descripcion, imagen_url');
+
+        if (errHoteles) throw errHoteles;
+
+        // 2️⃣ Obtener destinos
+        const { data: destinos } = await supabaseClient
+         .from('destinos')
+         .select('id, ciudad');
+
+        const mapaDestinos = {};
+        destinos?.forEach(d => { mapaDestinos[d.id] = d.ciudad; });
+
+        // 3️⃣ Renderizar tarjetas
+        contenedor.innerHTML = "";
+        if (!hoteles || hoteles.length === 0) {
+         contenedor.innerHTML = `<p>No hay hoteles disponibles.</p>`;
+         return;
+        }
+
+        hoteles.forEach(hotel => {
+         const ciudad = mapaDestinos[hotel.destino_id] || "Sin destino";
+         const precio = hotel.precio_noche
+            ? Number(hotel.precio_noche).toLocaleString('es-CO')
+            : "N/A";
+
+         const card = document.createElement("div");
+         card.className = "hotel-card";
+         card.innerHTML = `
+            <div class="hotel-info">
+             <h2>${hotel.nombre}</h2>
+             <p class="destino">📍 ${ciudad}</p>
+             <p class="estrellas">${"⭐".repeat(hotel.estrellas || 0)}</p>
+             <p class="descripcion">${hotel.descripcion || "Sin descripción disponible."}</p>
+            </div>
+            <div class="precio">
+             <p>Desde</p>
+             <h3>$${precio}</h3>
+             <button class="btn-reservar">Reservar</button>
+            </div>
+         `;
+         contenedor.appendChild(card);
+        });
+
+     } catch (err) {
+        console.error('⚠️ Error al cargar hoteles:', err);
+        contenedor.innerHTML = `<p style="color:red;">Error al cargar los hoteles</p>`;
+     }
+    });
+</script>
+</body>
+</html>

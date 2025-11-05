@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <link rel="stylesheet" href="/styles/vuelos.css">
@@ -8,13 +9,23 @@
 
 <body>
 
-  <header class="header">
+ <header class="header">
     <a href="/index/index.html"><h1>Agencia de Viajes Open World</h1></a>
-  </header>
-  
+  </header> 
+
+  <nav class="nav">
+    <ul>
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="inciar.html">Iniciar Sesión</a></li>
+      <li><a href="hoteles.html">Hoteles</a></li>
+      <li><a href="vuelos.html  ">Vuelos</a></li>
+      <li><a href="#final">Contacto</a></li>
+    </ul>
+  </nav>
+
   <h1>Vuelos disponibles en Colombia</h1>
 
-  <table>
+  <table class="tabla-vuelos">
     <thead>
       <tr>
         <th>ID</th>
@@ -27,14 +38,14 @@
       </tr>
     </thead>
     <tbody id="tabla-vuelos">
-      <tr><td colspan="7" style="text-align:center;">Cargando vuelos...</td></tr>
+      <tr>
+        <td colspan="7" style="text-align:center;">Cargando vuelos...</td>
+      </tr>
     </tbody>
   </table>
 
-  <!-- 📦 Cargar la librería Supabase -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-  <!-- 🔹 Script para mostrar los datos -->
   <script>
     document.addEventListener("DOMContentLoaded", async () => {
       const SUPABASE_URL = 'https://umoxzhitoujluggspitx.supabase.co';
@@ -43,7 +54,6 @@
       const db = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
       try {
-        // 🔹 Consultamos vuelos con origen y destino
         const { data, error } = await db
           .from('vuelos')
           .select(`
@@ -58,7 +68,7 @@
 
         if (error) throw error;
 
-        console.log("📦 Datos desde Supabase:", data); // 👈 útil para depurar
+        console.log("📦 Datos desde Supabase:", data);
 
         const tbody = document.getElementById("tabla-vuelos");
         tbody.innerHTML = "";
@@ -68,11 +78,17 @@
           fila.innerHTML = `
             <td>${vuelo.id}</td>
             <td>${vuelo.aerolinea}</td>
-            <td>${vuelo.origen?.ciudad || "Sin origen"}</td>
-            <td>${vuelo.destino?.ciudad || "Sin destino"}</td>
-            <td>${new Date(vuelo.fecha_salida).toLocaleString()}</td>
-            <td>${new Date(vuelo.fecha_llegada).toLocaleString()}</td>
+            <td>
+              <strong>${vuelo.origen?.ciudad || "Sin origen"}</strong><br>
+              ${new Date(vuelo.fecha_salida).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+            </td>
+            <td class="vuelo-ruta">✈️</td>
+            <td>
+              <strong>${vuelo.destino?.ciudad || "Sin destino"}</strong><br>
+              ${new Date(vuelo.fecha_llegada).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+            </td>
             <td>$${vuelo.precio?.toLocaleString('es-CO') || "N/A"}</td>
+            <td><button class="btn-reservar">Reservar</button></td>
           `;
           tbody.appendChild(fila);
         });
@@ -84,9 +100,7 @@
       }
     });
   </script>
+
 </body>
+
 </html>
-
-
-
-  

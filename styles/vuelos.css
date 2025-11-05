@@ -3,13 +3,14 @@ a {
 }
 
 body {
-    margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-image: url(/assets/istockphoto-1314724689-612x612.jpg);
-    background-attachment: fixed;
-    color: #333;
-    line-height: 1.6;
-  }
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-image: url(/assets/istockphoto-1314724689-612x612.jpg);
+  background-attachment: fixed;
+  background-size: cover;
+  color: #333;
+  line-height: 1.6;
+}
 
 header.header {
   text-align: center;
@@ -26,12 +27,48 @@ header.header h1 {
   font-weight: 700;
 }
 
+nav.nav {
+      background: rgba(255, 255, 255, 0.85);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      margin-bottom: 2rem;
+    }
+
+    nav.nav ul {
+      display: grid;
+      grid-auto-flow: column; 
+      grid-auto-columns: max-content; 
+      justify-content: center; 
+      align-items: center; 
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      gap: 40px; 
+    }
+
+    nav.nav ul a,
+    nav.nav ul li a {
+      display: inline-block;
+      padding: 0.8rem 1rem;
+      color: #1e90ff;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      border-radius: 5px;
+    }
+
+    nav.nav ul a:hover,
+    nav.nav ul li a:hover {
+      background-color: #1e90ff;
+      color: white;
+    }
+
 h1 {
   text-align: center;
   background-color: rgba(255, 255, 255, 0.8);
   padding: 15px;
 }
 
+/* === ESTILO ANTIGUO DE TABLA (de respaldo) === */
 table {
   width: 80%;
   margin: 30px auto;
@@ -56,8 +93,125 @@ tr:hover {
   background-color: #f1f1f1;
 }
 
-
 th:first-child,
 td:first-child {
   display: none;
+}
+
+table.tabla-vuelos {
+  width: 90%;
+  margin: 40px auto;
+  border-collapse: separate;
+  border-spacing: 0 20px;
+  background: transparent;
+}
+
+.tabla-vuelos thead,
+.tabla-vuelos th:first-child,
+.tabla-vuelos td:first-child {
+  display: none;
+}
+
+.tabla-vuelos tr {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr 1fr 1fr auto; 
+  align-items: center;
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 20px 25px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  margin-bottom: 25px; /* espacio entre tarjetas */
+}
+
+.tabla-vuelos tr:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.tabla-vuelos td {
+  border: none;
+  background: none;
+  color: #333;
+  padding: 0 10px;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.tabla-vuelos td:nth-child(2) {
+  color: #1e90ff;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.tabla-vuelos td:nth-child(3),
+.tabla-vuelos td:nth-child(4) {
+  text-align: center;
+  font-weight: 500;
+}
+
+.tabla-vuelos td:last-child {
+  color: #007b3c;
+  font-weight: 700;
+  font-size: 1.05rem;
+  text-align: right;
+}
+
+.btn-reservar {
+  background-color: #1e90ff;
+  color: #fff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 25px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.btn-reservar:hover {
+  background-color: #0c5d9a;
+}
+
+.vuelo-ruta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  color: #555;
+  font-size: 0.9rem;
+}
+
+.vuelo-ruta::before,
+.vuelo-ruta::after {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: #ccc;
+}
+
+.vuelo-ruta::before {
+  margin-right: 4px;
+}
+
+.vuelo-ruta::after {
+  margin-left: 4px;
+}
+
+@media (max-width: 900px) {
+  .tabla-vuelos tr {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 10px;
+    padding: 15px;
+  }
+
+  .btn-reservar {
+    width: 100%;
+  }
+
+  .vuelo-ruta::before,
+  .vuelo-ruta::after {
+    width: 20px;
+  }
 }

@@ -2,101 +2,216 @@
 <html lang="es">
 
 <head>
-  <meta charset="UTF-8" />
-  <link rel="stylesheet" href="/styles/index.css">
-  <link rel="icon" type="image/png" href="/assets/logo4.png">
-  <title>Open World</title>
-
+<meta charset="UTF-8" />
+<link rel="stylesheet" href="/styles/index.css">
+<link rel="icon" type="image/png" href="/assets/logo4.png">
+<title>Open World</title>
 </head>
 
-
-  
 <body>
-
-  <header class="header">
+<header class="header">
     <h1>Agencia de Viajes Open World</h1>
   </header>
 
   <nav class="nav">
     <ul>
+      <li><a href="index.html">Inicio</a></li>
       <li><a href="inciar.html">Iniciar Sesión</a></li>
-      <li><a href="#inicio">Hoteles</a></li>
+      <li><a href="hoteles.html">Hoteles</a></li>
       <li><a href="vuelos.html  ">Vuelos</a></li>
-      <li><a href="destinos.html">Destinos</a></li>
       <li><a href="#final">Contacto</a></li>
     </ul>
   </nav>
 
-  <!-- Carrusel sin tocar -->
+<!-- Carrusel -->
   <section class="slider">
     <div class="contenido">
       <img src="/assets/bogota.jpg" alt="">
       <img src="/assets/cali.jpg" alt="">
       <img src="/assets/cartagena.jpg" alt="">
       <img src="/assets/medellin.jpg" alt="">
-      <img src="/assets/sm.jpg" alt="">
-      <img src="/assets/bogota.jpg" alt="">
-      <img src="/assets/cali.jpg" alt="">
-      <img src="/assets/cartagena.jpg" alt="">
-      <img src="/assets/medellin.jpg" alt="">
-      <img src="/assets/sm.jpg" alt="">
-      <img src="/assets/bogota.jpg" alt="">
-      <img src="/assets/cali.jpg" alt="">
-      <img src="/assets/cartagena.jpg" alt="">
-      <img src="/assets/medellin.jpg" alt="">
-      <img src="/assets/sm.jpg" alt="">
+       <img src="/assets/bo1.jpg" alt="">
+      <img src="/assets/cali1.jpg" alt="">
+      <img src="/assets/carta1.jpg" alt="">
+      <img src="/assets/mede1.jpg" alt="">
+      <img src="/assets/bog2.jpg" alt="">
+      <img src="/assets/cali2.jpg" alt="">
+      <img src="/assets/carta2.jpeg" alt="">
+      <img src="/assets/mede2.jpg" alt="">
+      <img src="/assets/bog3.jpg" alt="">
+      <img src="/assets/cali3.jpg" alt="">
+      <img src="/assets/carta3.jpg" alt="">
+      <img src="/assets/mede3.jpg" alt="">
+      <img src="/assets/bog4.jpeg" alt="">
+      <img src="/assets/cali4.jpg" alt="">
+      <img src="/assets/carta4.jpg" alt="">
+      <img src="/assets/mede4.jpg" alt="">
+      <img src="/assets/bog5.jpg" alt="">
+      <img src="/assets/cali5.jpg" alt="">
+      <img src="/assets/carta5.jpg" alt="">
+      <img src="/assets/mede5.jpg" alt="">
   </section>
 
-  <main id="inicio" class="main">
+<main id="inicio" class="main">
     <h2>Bienvenido</h2>
     <p>En Open World, te llevamos a descubrir los destinos más increíbles con los mejores paquetes al mejor precio.</p>
-  </main>
+</main>
 
-  <article id="paquetes">
-    <h2>Paquetes destacados</h2>
-    <ol class="ol1" style="font-style: italic;">
-      <li>Paquete Playa Caribe — 5 días todo incluido</li>
-      <li>Aventura en la Selva Amazónica — 7 días con guía especializado</li>
-      <li>Tour cultural Europa Clásica — 10 días visitando ciudades históricas</li>
-    </ol>
-  </article>
+<!-- Buscador de vuelos -->
+<section class="buscador-vuelos">
+    <h2>Buscar vuelos por destino</h2>
+    <form id="formBuscar">
+     <input type="search" id="buscador" placeholder="Escribe el nombre del destino..." required>
+     <button type="submit">Buscar</button>
+    </form>
+    <ul id="resultados-vuelos" class="destinos-container">
+     <!-- Resultados de vuelos -->
+    </ul>
+</section>
 
-  
+<!-- Destinos turísticos -->
+<section id="destinos" class="destinos-section">
+    <h2>Destinos turísticos de Colombia</h2>
+    <div id="lista-destinos" class="destinos-container">
+     <p class="loading">Cargando destinos...</p>
+    </div>
+</section>
 
-  <footer id="final">
-    <h2 class="cc">Contáctanos</h2>
-    <p class="wpp"><a href="https://wa.link/1iszww" target="_blank">WhatsApp</a></p>
-    <p>Email: info@OpenWorld.com</p>
-    <p>Dirección: Calle 86 #69h-35</p>
-    <p>&copy; 2025 Open World. Todos los derechos reservados.</p>
-  </footer>
+<footer id="final">
+  <div class="footer-contenedor">
+    
+    <!-- Sección de contacto -->
+    <div class="footer-contacto">
+      <h2 class="cc">Contáctanos</h2>
+      <p class="wpp"><a href="https://wa.link/1iszww" target="_blank">WhatsApp</a></p>
+      <p>Email: info@OpenWorld.com</p>
+      <p>Dirección: Calle 86 #69h-35</p>
+    </div>
 
-  <!-- 🔹 Cargar la librería de Supabase -->
+    <!-- Sección de desarrolladores -->
+    <div class="footer-devs">
+      <h3>Desarrollado por:</h3>
+      <ul>
+        <li>Sebastian Crespo</li>
+        <li>Anderson Alvarado</li>
+        <li>Yenifer Rodriguez</li>
+        <li>Brayan Valencia</li>
+        <li>Cristina Medina</li>
+        <li>Lizeth Rincon</li>
+      </ul>
+      <p class="dev-email">📧 yenrosas982@gmail.Colombia</p>
+    </div>
+
+  </div>
+
+  <p class="copy">&copy; 2025 Open World. Todos los derechos reservados.</p>
+</footer>
+
+
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-<!-- 🔹 Tu conexión y consulta -->
 <script>
-  document.addEventListener("DOMContentLoaded", async () => {
     const SUPABASE_URL = 'https://umoxzhitoujluggspitx.supabase.co';
     const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVtb3h6aGl0b3VqbHVnZ3NwaXR4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjExMTU2MTgsImV4cCI6MjA3NjY5MTYxOH0.7FahMznLDSsSaidDFUVpOc9Awy4iB5HQXxTkIL9RdN8';
-    
-    // ✅ el objeto correcto es "supabase", no "Supabase"
     const db = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-    try {
-      const { data, error } = await db.from('destinos').select('*');
-      if (error) throw error;
-      console.log('Destinos', data);
+    // ----------------- Cargar destinos turísticos -----------------
+    document.addEventListener("DOMContentLoaded", async () => {
+     const contenedor = document.getElementById("lista-destinos");
+     try {
+        const { data, error } = await db.from('destinos').select('*');
+        if (error) throw error;
+        contenedor.innerHTML = "";
+        data.forEach(destino => {
+         const article = document.createElement("article");
+         article.classList.add("destino-card");
+         article.innerHTML = `
+            <img src="${destino.imagen_url || 'assets/placeholder.jpg'}" alt="${destino.ciudad}">
+            <div class="destino-info">
+             <h3>${destino.ciudad}</h3>
+             <p>${destino.descripcion}</p>
+            </div>
+         `;
+         contenedor.appendChild(article);
+        });
+     } catch (err) {
+        console.error('Error al cargar los destinos:', err);
+        contenedor.innerHTML = `<p style="color:red;">Error al cargar los destinos.</p>`;
+     }
+    });
 
-      const { data: vuelos, error: errorVuelos } = await db.from('vuelos').select('*');
-      if (errorVuelos) throw errorVuelos;
-      console.log('Vuelos:', vuelos);
-      
-    } catch (err) {
-      console.error('❌ Error al cargar los datos:', err);
-    }
-  });
+    // ----------------- Buscador de vuelos -----------------
+    document.addEventListener("DOMContentLoaded", () => {
+     const form = document.getElementById("formBuscar");
+     const input = document.getElementById("buscador");
+     const resultados = document.getElementById("resultados-vuelos");
+
+     form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const destinoNombre = input.value.trim();
+        if (!destinoNombre) return;
+
+        try {
+         // Buscar todos los destinos que coincidan (parcial y case-insensitive)
+         const { data: destinos, error: destinoError } = await db
+            .from('destinos')
+            .select('id, ciudad')
+            .ilike('ciudad', `%${destinoNombre}%`);
+         if (destinoError) throw destinoError;
+         if (!destinos || destinos.length === 0) {
+            resultados.innerHTML = `<li>No se encontró el destino "${destinoNombre}".</li>`;
+            return;
+         }
+
+         resultados.innerHTML = "";
+
+         // Para cada destino encontrado, buscar sus vuelos
+         for (const destino of destinos) {
+            const { data: vuelos, error: vuelosError } = await db
+             .from('vuelos_disponibles')
+             .select('id, origen_id, aerolinea, precio, duracion, fecha_salida, hora_salida, imagen_url')
+             .eq('destino_id', destino.id)
+             .eq('disponible', true);
+            if (vuelosError) throw vuelosError;
+
+            if (!vuelos || vuelos.length === 0) {
+             resultados.innerHTML += `<li>No hay vuelos disponibles hacia "${destino.ciudad}".</li>`;
+             continue;
+            }
+
+            // Obtener nombres de origen para cada vuelo
+            for (const vuelo of vuelos) {
+             const { data: origenData } = await db
+                .from('origen')
+                .select('ciudad')
+                .eq('id', vuelo.origen_id)
+                .maybeSingle();
+             vuelo.origen = origenData ? origenData.ciudad : "Desconocido";
+
+             const li = document.createElement("li");
+             li.classList.add("vuelo-card");
+             li.innerHTML = `
+                <img src="${vuelo.imagen_url || 'assets/placeholder.jpg'}" alt="Vuelo ${vuelo.aerolinea}">
+                <p><strong>Destino:</strong> ${destino.ciudad}</p>
+                <p><strong>Origen:</strong> ${vuelo.origen}</p>
+                <p><strong>Aerolínea:</strong> ${vuelo.aerolinea}</p>
+                <p><strong>Precio:</strong> $${vuelo.precio}</p>
+                <p><strong>Duración:</strong> ${vuelo.duracion}</p>
+                <p><strong>Salida:</strong> ${new Date(vuelo.fecha_salida).toLocaleDateString()} ${vuelo.hora_salida}</p>
+             `;
+             resultados.appendChild(li);
+            }
+         }
+        } catch (err) {
+         console.error("Error al buscar vuelos:", err);
+         resultados.innerHTML = `<li style="color:red;">Error al buscar vuelos.</li>`;
+        }
+     });
+    });
 </script>
-</body>
 
+</body>
 </html>
+
+
