@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Busqueda de Vuelos</title>
+    <style>
+        .search-container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+
+        .search-box {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        .search-button {
+            padding: 12px 24px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .search-button:hover {
+            background-color: #0056b3;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 20px;
+            display: none;
+        }
+
+        .results-container {
+            display: grid;
+            gap: 15px;
+        }
+
+        .vuelo-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            background-color: #f9f9f9;
+        }
+
+        .vuelo-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .vuelo-header h3 {
+            margin: 0;
+            color: #333;
+        }
+
+        .precio {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        .ruta {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+
+        .origen, .destino {
+            font-weight: bold;
+        }
+
+        .flecha {
+            color: #666;
+        }
+
+        .detalles {
+            display: flex;
+            gap: 15px;
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .vuelo-imagen {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+
+        .vuelo-status {
+            margin-top: 10px;
+        }
+
+        .disponible-true {
+            color: green;
+            font-weight: bold;
+        }
+
+        .disponible-false {
+            color: red;
+            font-weight: bold;
+        }
+
+        .mensaje {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="search-container">
+        <div class="search-box">
+            <input type="text" id="searchInput" class="search-input" placeholder="Buscar vuelos por destino o origen...">
+            <button id="searchButton" class="search-button">Buscar</button>
+        </div>
+        
+        <div id="loadingIndicator" class="loading">
+            🔍 Buscando vuelos...
+        </div>
+        
+        <div id="resultsContainer" class="results-container">
+            <!-- Los resultados aparecerán aquí -->
+        </div>
+    </div>
+
+    <script src="busqueda.js"></script>
+</body>
+</html>
