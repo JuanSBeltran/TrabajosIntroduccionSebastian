@@ -57,17 +57,7 @@
     <p>En Open World, te llevamos a descubrir los destinos más increíbles con los mejores paquetes al mejor precio.</p>
 </main>
 
-<!-- Buscador de vuelos -->
-<section class="buscador-vuelos">
-    <h2>Buscar vuelos por destino</h2>
-    <form id="formBuscar">
-     <input type="search" id="buscador" placeholder="Escribe el nombre del destino..." required>
-     <button type="submit">Buscar</button>
-    </form>
-    <ul id="resultados-vuelos" class="destinos-container">
-     <!-- Resultados de vuelos -->
-    </ul>
-</section>
+
 
 <!-- Destinos turísticos -->
 <section id="destinos" class="destinos-section">
@@ -76,6 +66,12 @@
      <p class="loading">Cargando destinos...</p>
     </div>
 </section>
+<!-- Resultados de vuelos seleccionados -->
+<section id="vuelos-resultados" style="margin-top: 40px;">
+  <h2 class="titulo-vuelos">Vuelos disponibles</h2>
+  <ul id="resultados-vuelos" class="destinos-container"></ul>
+</section>
+
 
 <footer id="final">
   <div class="footer-contenedor">
@@ -111,105 +107,99 @@
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script>
-    const SUPABASE_URL = 'https://umoxzhitoujluggspitx.supabase.co';
-    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVtb3h6aGl0b3VqbHVnZ3NwaXR4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjExMTU2MTgsImV4cCI6MjA3NjY5MTYxOH0.7FahMznLDSsSaidDFUVpOc9Awy4iB5HQXxTkIL9RdN8';
-    const db = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+const SUPABASE_URL = 'https://umoxzhitoujluggspitx.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVtb3h6aGl0b3VqbHVnZ3NwaXR4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjExMTU2MTgsImV4cCI6MjA3NjY5MTYxOH0.7FahMznLDSsSaidDFUVpOc9Awy4iB5HQXxTkIL9RdN8';
+const db = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-    // ----------------- Cargar destinos turísticos -----------------
-    document.addEventListener("DOMContentLoaded", async () => {
-     const contenedor = document.getElementById("lista-destinos");
-     try {
-        const { data, error } = await db.from('destinos').select('*');
-        if (error) throw error;
-        contenedor.innerHTML = "";
-        data.forEach(destino => {
-         const article = document.createElement("article");
-         article.classList.add("destino-card");
-         article.innerHTML = `
-            <img src="${destino.imagen_url || 'assets/placeholder.jpg'}" alt="${destino.ciudad}">
-            <div class="destino-info">
-             <h3>${destino.ciudad}</h3>
-             <p>${destino.descripcion}</p>
-            </div>
-         `;
-         contenedor.appendChild(article);
-        });
-     } catch (err) {
-        console.error('Error al cargar los destinos:', err);
-        contenedor.innerHTML = `<p style="color:red;">Error al cargar los destinos.</p>`;
-     }
+const resultados = document.getElementById("resultados-vuelos");
+
+/* ------------------ FUNCIÓN PARA MOSTRAR VUELOS (CORREGIDA) ------------------ */
+async function mostrarVuelos(destinoId, destinoNombre) {
+    resultados.innerHTML = `<li>Cargando vuelos a ${destinoNombre}...</li>`;
+
+    const { data: vuelos, error } = await db
+        .from('vuelos_disponibles')
+        // MODIFICACIÓN CLAVE: Solicitamos 'hora_llegada'
+        .select('id, origen_id, aerolinea, precio, duracion, fecha_salida, hora_salida, imagen_url, hora_llegada')
+        .eq('destino_id', destinoId)
+        .eq('disponible', true);
+
+    if (error || !vuelos) {
+        resultados.innerHTML = `<li style="color:red;">Error al buscar vuelos.</li>`;
+        return;
+    }
+
+    if (vuelos.length === 0) {
+        resultados.innerHTML = `<li>No hay vuelos disponibles hacia ${destinoNombre}.</li>`;
+        return;
+    }
+
+    resultados.innerHTML = "";
+
+    for (const vuelo of vuelos) {
+        const { data: origenData } = await db
+            .from('origen')
+            .select('ciudad')
+            .eq('id', vuelo.origen_id)
+            .maybeSingle();
+
+        vuelo.origen = origenData ? origenData.ciudad : "Desconocido";
+
+        // NOTA: La tabla solo tiene la hora, asumimos que la llegada es el mismo día que la salida.
+        // Si el vuelo llega al día siguiente, necesitarás la 'fecha_llegada' en la base de datos.
+        // Por ahora, solo mostramos la fecha de salida y la hora de llegada.
+        
+        const li = document.createElement("li");
+        li.classList.add("vuelo-card");
+        li.innerHTML = `
+            <img src="${vuelo.imagen_url || 'assets/placeholder.jpg'}" alt="Vuelo">
+            <p><strong>Destino:</strong> ${destinoNombre}</p>
+            <p><strong>Origen:</strong> ${vuelo.origen}</p>
+            <p><strong>Aerolínea:</strong> ${vuelo.aerolinea}</p>
+            <p><strong>Precio:</strong> $${vuelo.precio}</p>
+            <p><strong>Duración:</strong> ${vuelo.duracion}</p>
+            <p><strong>Salida:</strong> ${new Date(vuelo.fecha_salida).toLocaleDateString()} ${vuelo.hora_salida}</p>
+            <p><strong>Llegada:</strong> ${vuelo.hora_llegada}</p>
+        `;
+        resultados.appendChild(li);
+    }
+}
+/* ------------------ CARGAR DESTINOS Y HACERLOS CLICKEABLES ------------------ */
+document.addEventListener("DOMContentLoaded", async () => {
+  const contenedor = document.getElementById("lista-destinos");
+
+  const { data, error } = await db.from('destinos').select('*');
+  if (error || !data) {
+    contenedor.innerHTML = `<p style="color:red;">Error al cargar los destinos.</p>`;
+    return;
+  }
+
+  contenedor.innerHTML = "";
+
+  data.forEach(destino => {
+    const article = document.createElement("article");
+    article.classList.add("destino-card");
+    article.style.cursor = "pointer";
+
+    article.innerHTML = `
+      <img src="${destino.imagen_url || 'assets/placeholder.jpg'}" alt="${destino.ciudad}">
+      <h3>${destino.ciudad}</h3>
+      <p>${destino.descripcion}</p>
+    `;
+
+    article.addEventListener("click", () => {
+      mostrarVuelos(destino.id, destino.ciudad);
+      document.getElementById("vuelos-resultados").scrollIntoView({ behavior: "smooth" });
     });
 
-    // ----------------- Buscador de vuelos -----------------
-    document.addEventListener("DOMContentLoaded", () => {
-     const form = document.getElementById("formBuscar");
-     const input = document.getElementById("buscador");
-     const resultados = document.getElementById("resultados-vuelos");
-
-     form.addEventListener("submit", async (e) => {
-        e.preventDefault();
-        const destinoNombre = input.value.trim();
-        if (!destinoNombre) return;
-
-        try {
-         // Buscar todos los destinos que coincidan (parcial y case-insensitive)
-         const { data: destinos, error: destinoError } = await db
-            .from('destinos')
-            .select('id, ciudad')
-            .ilike('ciudad', `%${destinoNombre}%`);
-         if (destinoError) throw destinoError;
-         if (!destinos || destinos.length === 0) {
-            resultados.innerHTML = `<li>No se encontró el destino "${destinoNombre}".</li>`;
-            return;
-         }
-
-         resultados.innerHTML = "";
-
-         // Para cada destino encontrado, buscar sus vuelos
-         for (const destino of destinos) {
-            const { data: vuelos, error: vuelosError } = await db
-             .from('vuelos_disponibles')
-             .select('id, origen_id, aerolinea, precio, duracion, fecha_salida, hora_salida, imagen_url')
-             .eq('destino_id', destino.id)
-             .eq('disponible', true);
-            if (vuelosError) throw vuelosError;
-
-            if (!vuelos || vuelos.length === 0) {
-             resultados.innerHTML += `<li>No hay vuelos disponibles hacia "${destino.ciudad}".</li>`;
-             continue;
-            }
-
-            // Obtener nombres de origen para cada vuelo
-            for (const vuelo of vuelos) {
-             const { data: origenData } = await db
-                .from('origen')
-                .select('ciudad')
-                .eq('id', vuelo.origen_id)
-                .maybeSingle();
-             vuelo.origen = origenData ? origenData.ciudad : "Desconocido";
-
-             const li = document.createElement("li");
-             li.classList.add("vuelo-card");
-             li.innerHTML = `
-                <img src="${vuelo.imagen_url || 'assets/placeholder.jpg'}" alt="Vuelo ${vuelo.aerolinea}">
-                <p><strong>Destino:</strong> ${destino.ciudad}</p>
-                <p><strong>Origen:</strong> ${vuelo.origen}</p>
-                <p><strong>Aerolínea:</strong> ${vuelo.aerolinea}</p>
-                <p><strong>Precio:</strong> $${vuelo.precio}</p>
-                <p><strong>Duración:</strong> ${vuelo.duracion}</p>
-                <p><strong>Salida:</strong> ${new Date(vuelo.fecha_salida).toLocaleDateString()} ${vuelo.hora_salida}</p>
-             `;
-             resultados.appendChild(li);
-            }
-         }
-        } catch (err) {
-         console.error("Error al buscar vuelos:", err);
-         resultados.innerHTML = `<li style="color:red;">Error al buscar vuelos.</li>`;
-        }
-     });
-    });
+    contenedor.appendChild(article);
+  });
+});
 </script>
+
 
 </body>
 </html>

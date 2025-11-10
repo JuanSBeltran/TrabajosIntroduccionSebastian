@@ -445,3 +445,11 @@ nav.nav ul {
     object-fit: cover;
     border-radius: 4px;
 }
+.titulo-vuelos {
+    text-align: center;
+    font-size: 2rem;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
