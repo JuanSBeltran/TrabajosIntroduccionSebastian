@@ -1,136 +1,147 @@
+/* 🔹 Reset básico */
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-a{
-    text-decoration: none;
+a {
+  text-decoration: none;
 }
 
 body {
-    height: 100vh;
-    background: linear-gradient(to right, #434343, #000000);
-    justify-content: center;
-    align-items: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(180deg, #d7ecff 0%, #eaf5ff 60%, #f7fbff 100%);
+  color: #333;
+  line-height: 1.6;
+  overflow-x: hidden;
 }
 
+/* 🔹 Encabezado */
 header.header {
-    text-align: center;
-    padding: 1.5rem 1rem;
-    background:#434343;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin-bottom: 1rem;
+  background: linear-gradient(90deg, #007bff, #00bfff);
+  color: white;
+  text-align: center;
+  padding: 2rem 1rem 3rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 header.header h1 {
-    margin: 0;
-    font-size: 2.5rem;
-    color: #1e90ff;
-    font-weight: 700;
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
 }
 
+/* 🔹 Barra de navegación */
 nav.nav {
-    background:#434343;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin-bottom: 2rem;
+  background: white;
+  border-radius: 12px;
+  width: fit-content;
+  margin: -25px auto 40px auto;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 0.3rem 1rem;
 }
 
 nav.nav ul {
-      display: grid;
-      grid-auto-flow: column; 
-      grid-auto-columns: max-content; 
-      justify-content: center; 
-      align-items: center; 
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      gap: 40px; 
-    }
-
-    nav.nav ul a,
-        nav.nav ul li a {
-    display: inline-block;
-    padding: 0.8rem 1rem;
-    color: #1e90ff;
-    font-weight: 600;
-    text-decoration: none;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    border-radius: 5px;
+  display: flex;
+  gap: 25px;
+  list-style: none;
 }
 
-    nav.nav ul a:hover,
-        nav.nav ul li a:hover {
-    background-color: #1e90ff;
-    color: white;
+nav.nav a {
+  color: #007bff;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
 }
 
-h1 {
+nav.nav a:hover,
+nav.nav a.active {
+  background: linear-gradient(90deg, #007bff, #00bfff);
+  color: white;
+}
+
+/* 🔹 Caja del formulario */
+.form-container {
+  background: white;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 2rem 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   text-align: center;
-  background-color:#434343;
-  padding: 15px;
 }
 
-.card {
-    background-color: rgba(255, 255, 255, 0.1);
-    /* fondo semitransparente */
-    padding: 30px 40px;
-    border-radius: 10px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    width: 300px;
-    justify-self: center;
+/* 🔹 Etiquetas e inputs */
+form label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #333;
+  text-align: left;
 }
-  
-.card form {
-    display: flex;
-    flex-direction: column;
+
+form input[type="text"],
+form input[type="password"] {
+  width: 100%;
+  padding: 0.7rem;
+  margin-bottom: 1.2rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border 0.3s ease;
 }
-  
-.card div {
-    margin-bottom: 20px;
+
+form input[type="text"]:focus,
+form input[type="password"]:focus {
+  border-color: #00bfff;
+  outline: none;
 }
-  
-label {
-    margin-bottom: 5px;
-    display: block;
-    font-weight: bold;
-    color: white;
+
+/* 🔹 Botones */
+.btn-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
 }
-  
-input[type="text"],
-input[type="password"] {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: rgba(255, 255, 255, 0.8);
+
+.btn {
+  flex: 1;
+  background: linear-gradient(90deg, #007bff, #00bfff);
+  color: white;
+  border: none;
+  padding: 0.7rem 0;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
-  
-.buttons {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 14px rgba(0, 123, 255, 0.3);
 }
-  
-.buttons a {
-    text-decoration: none;
-    color: white;
+
+/* 🔹 Botón Volver (gris) */
+.btn-volver {
+  background: #ccc;
+  color: #333;
+}
+
+.btn-volver:hover {
+  background: #bbb;
+}
+
+/* 🔹 Responsive */
+@media (max-width: 480px) {
+  .form-container {
+    width: 90%;
+    padding: 1.5rem;
   }
-  
-.buttons button {
-    background-color: #007BFF;
-    border: none;
-    color: white;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-  
-.buttons button:hover {
-    background-color: #0056b3;
-}
 
+  header.header h1 {
+    font-size: 2rem;
+  }
+}

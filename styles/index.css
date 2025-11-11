@@ -1,518 +1,245 @@
-    /* ===========================
-Reset básico y tipografía
+/* ===========================
+Reset y tipografía
 =========================== */
 * {
-box-sizing: border-box;
-margin: 0;
-padding: 0;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-background-image: url(/assets/istockphoto-1314724689-612x612.jpg);
-background-attachment: fixed;
-color: #333;
-line-height: 1.6;
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to bottom, #e0f7fa, #ffffff);
+    color: #333;
+    line-height: 1.6;
+    position: relative;
+    overflow-x: hidden;
 }
 
-html {
-scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
-a {
-text-decoration: none;
-}
+a { text-decoration: none; transition: color 0.3s ease; }
 
 /* ===========================
-Header y nav
+Header y navegación
 =========================== */
 header.header {
-text-align: center;
-padding: 1.5rem 1rem;
-background: rgba(255, 255, 255, 0.8);
-box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-margin-bottom: 1rem;
+    text-align: center;
+    padding: 2rem 1rem;
+    background: linear-gradient(90deg, #00c6ff, #0072ff);
+    color: white;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
 }
 
 header.header h1 {
-margin: 0;
-font-size: 2.5rem;
-color: #1e90ff;
-font-weight: 700;
+    font-size: 3rem;
+    font-weight: 800;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.2);
 }
 
 nav.nav {
-background: rgba(255, 255, 255, 0.85);
-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-margin-bottom: 2rem;
+    background: #ffffffcc;
+    padding: 0.5rem 0;
+    margin-bottom: 2rem;
+    border-radius: 12px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 nav.nav ul {
-      display: grid;
-      grid-auto-flow: column; 
-      grid-auto-columns: max-content; 
-      justify-content: center; 
-      align-items: center; 
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      gap: 40px; 
-    }
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    list-style: none;
+}
 
 nav.nav ul a {
-display: inline-block;
-padding: 0.8rem 1rem;
-color: #1e90ff;
-font-weight: 600;
-border-radius: 5px;
-transition: background-color 0.3s ease, color 0.3s ease;
+    padding: 0.7rem 1.2rem;
+    color: #0072ff;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: all 0.3s ease;
 }
 
 nav.nav ul a:hover {
-background-color: #1e90ff;
-color: white;
+    background: linear-gradient(90deg, #00c6ff, #0072ff);
+    color: white;
+    transform: translateY(-2px);
 }
 
 /* ===========================
-Carrusel simple
+Carrusel de aerolíneas
 =========================== */
 .carousel {
-width: 100%;
-max-width: 100%;
-overflow: hidden;
-position: relative;
-margin: 2rem auto;
-border-radius: 10px;
-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 1200px;
+    margin: 2rem auto;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
 }
 
 .slider {
-overflow: hidden;
-white-space: nowrap;
-box-sizing: border-box;
-border: 2px solid #ccc;
-background-color: #fff;
-padding: 10px 0;
+    display: flex;
+    animation: scroll 25s linear infinite;
+    gap: 2rem;
+    padding: 1rem;
 }
 
 .slider img {
-height: 80px;
-margin: 0 20px;
-vertical-align: left;
-display: inline-block;
+    height: 80px;
+    object-fit: contain;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
 }
+
+.slider img:hover { transform: scale(1.1); }
 
 @keyframes scroll {
-0% { transform: translateX(0); }
-100% { transform: translateX(-50%); }
-}
-
-.contenido {
-display: inline-block;
-white-space: nowrap;
-animation: scroll 10s linear infinite;
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
 }
 
 /* ===========================
-Main y bienvenida
+Sección principal / bienvenida
 =========================== */
 main#inicio {
-background: rgba(255, 255, 255, 0.9);
-max-width: 800px;
-margin: 0 auto 2rem auto;
-padding: 1.5rem;
-border-radius: 8px;
-box-shadow: 0 4px 10px rgba(30, 144, 255, 0.2);
-text-align: center;
+    background: white;
+    max-width: 900px;
+    margin: 0 auto 3rem auto;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    text-align: center;
 }
 
 main#inicio h2 {
-color: #1e90ff;
-margin-bottom: 1rem;
+    color: #0072ff;
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    margin-bottom: 1rem;
 }
 
 main#inicio p {
-font-size: 1.2rem;
+    font-size: 1.2rem;
+    color: #555;
 }
 
 /* ===========================
 Buscador de vuelos
 =========================== */
 .buscador-vuelos {
-background: rgba(255, 255, 255, 0.9);
-max-width: 800px;
-margin: 2rem auto;
-padding: 2rem;
-border-radius: 10px;
-box-shadow: 0 4px 10px rgba(30, 144, 255, 0.2);
-text-align: center;
+    background: white;
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    text-align: center;
 }
 
 .buscador-vuelos form {
-display: flex;
-justify-content: center;
-flex-wrap: wrap;
-gap: 0.5rem;
-margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1rem;
 }
 
 .buscador-vuelos input[type="search"] {
-padding: 0.5rem 1rem;
-font-size: 1rem;
-border-radius: 5px;
-border: 1px solid #ccc;
-flex: 1;
-min-width: 200px;
+    padding: 0.7rem 1rem;
+    font-size: 1rem;
+    border-radius: 10px;
+    border: 1px solid #0072ff;
+    flex: 1;
+    min-width: 220px;
+    transition: all 0.3s ease;
+}
+
+.buscador-vuelos input[type="search"]:focus {
+    border-color: #00c6ff;
+    box-shadow: 0 0 8px #00c6ff33;
+    outline: none;
 }
 
 .buscador-vuelos button {
-padding: 0.5rem 1.5rem;
-background-color: #1e90ff;
-color: white;
-border: none;
-border-radius: 5px;
-cursor: pointer;
-font-weight: bold;
-transition: background 0.3s ease;
+    padding: 0.7rem 1.5rem;
+    background: linear-gradient(90deg, #00c6ff, #0072ff);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 .buscador-vuelos button:hover {
-background-color: #084298;
-}
-
-#resultados-vuelos {
-list-style: none;
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-gap: 2rem; /* separación entre vuelos */
-margin-top: 1rem;
-padding: 0;
-}
-
-.vuelo-card {
-background: #ffffff;
-border-radius: 15px;
-padding: 1rem;
-box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-text-align: center;
-transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.vuelo-card img {
-width: 100%;
-height: 150px;
-object-fit: cover;
-margin-bottom: 0.5rem;
-}
-
-.vuelo-card:hover {
-transform: translateY(-6px);
-box-shadow: 0 8px 16px rgba(30, 144, 255, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0,114,255,0.3);
 }
 
 /* ===========================
-Sección de destinos
+Resultados de vuelos (Tarjetas horizontales)
 =========================== */
-.destinos-section {
-background: rgba(255, 255, 255, 0.9);
-padding: 2rem 1rem;
-margin: 2rem auto;
-max-width: 1200px;
-border-radius: 10px;
-box-shadow: 0 4px 10px rgba(30, 144, 255, 0.2);
-text-align: center;
-}
-
-.destinos-section h2 {
-color: #1e90ff;
-font-size: 2rem;
-margin-bottom: 2rem;
-}
-
-.destinos-container {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-gap: 2rem; /* espacio entre tarjetas */
-padding: 1rem;
-justify-items: center;
-}
-
-.destino-card {
-background: #ffffff;
-border-radius: 15px;
-overflow: hidden;
-box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-transition: transform 0.25s ease, box-shadow 0.25s ease;
-width: 100%;
-max-width: 300px;
-text-align: left;
-border-top: 4px solid #1e90ff;
-}
-
-.destino-card img {
-width: 100%;
-height: 180px;
-object-fit: cover;
-display: block;
-}
-
-.destino-info {
-padding: 1rem;
-}
-
-.destino-card h3 {
-color: #1e90ff;
-margin-bottom: 0.5rem;
-font-size: 1.3rem;
-}
-
-.destino-card p {
-color: #333;
-font-size: 1rem;
-line-height: 1.5;
-}
-
-.destino-card:hover {
-transform: translateY(-8px);
-box-shadow: 0 8px 16px rgba(30, 144, 255, 0.3);
-}
-
-/* Texto mientras carga */
-.loading {
-font-size: 1.2rem;
-color: #555;
-grid-column: 1 / -1;
-text-align: center;
-}
-
-/* ===========================
-Footer
-=========================== */
-footer {
-background-color: antiquewhite;
-padding: 1.5rem 1rem;
-text-align: center;
-font-size: 1rem;
-box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
-}
-
-footer h2.cc {
-margin-top: 0;
-color: #1e90ff;
-font-size: 1.5rem;
-}
-
-footer p {
-margin: 0.3rem 0;
-}
-
-footer a {
-color: #1e90ff;
-text-decoration: none;
-font-weight: 600;
-transition: color 0.3s ease;
-}
-
-footer a:hover {
-color: #0c5d9a;
-text-decoration: underline;
-}
-
-/* ===========================
-Responsivo
-=========================== */
-@media (max-width: 768px) {
-nav.nav ul {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-}
-
-.slider img {
-    height: 60px;
-}
-
-.buscador-vuelos form {
-    flex-direction: column;
-}
-
-#resultados-vuelos,
-.destinos-container {
-    grid-template-columns: 1fr;
-}
-}
-#final {
-  background-color: #f5f5f5;
-  padding: 30px 50px;
-  font-family: Arial, sans-serif;
-  color: #333;
-  border-top: 2px solid #ddd;
-}
-
-/* Contenedor de ambas columnas */
-.footer-contenedor {
-  display: flex;
-  justify-content: space-between; /* separa las dos secciones */
-  align-items: flex-start;
-  flex-wrap: wrap; /* para adaptarse en pantallas pequeñas */
-}
-
-/* Columna izquierda */
-.footer-contacto {
-  text-align: left;
-  flex: 1;
-  min-width: 250px;
-}
-
-/* Columna derecha */
-.footer-devs {
-  text-align: right;
-  flex: 1;
-  min-width: 250px;
-}
-
-.footer-devs h3 {
-  margin-bottom: 10px;
-}
-
-.footer-devs ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.footer-devs li {
-  margin-bottom: 6px;
-  font-weight: 500;
-}
-
-/* Email de desarrolladores */
-.dev-email {
-  margin-top: 10px;
-  font-size: 0.9em;
-  color: #555;
-}
-
-/* WhatsApp link */
-.wpp a {
-  color: #25D366;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.wpp a:hover {
-  text-decoration: underline;
-}
-
-/* Texto de derechos reservados */
-.copy {
-  text-align: center;
-  margin-top: 30px;
-  font-size: 0.9em;
-  color: #777;
-}
-
-/* Responsivo para móviles */
-@media (max-width: 700px) {
-  .footer-contenedor {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .footer-devs {
-    text-align: center;
-    margin-top: 20px;
-  }
-}
-/* --- 1. Contenedor General de Resultados --- */
-/* Esta regla es esencial para que las filas se apilen verticalmente y controlen el ancho */
 #resultados-vuelos {
     display: flex;
-    flex-direction: column; 
-    gap: 15px; /* Espacio entre las filas de vuelo */
+    flex-direction: column;
+    gap: 1.5rem;
     list-style: none;
     padding: 0;
-    margin: 20px auto;
-    max-width: 95%; /* Ocupa casi todo el ancho de la pantalla */
+    max-width: 95%;
+    margin: 2rem auto;
 }
 
-/* El estilo de .destinos-container (para los destinos de arriba) debe mantenerse así: */
-#lista-destinos.destinos-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-    list-style: none;
-    margin: 20px auto;
-}
-/* Asegúrate de que tus estilos para .destino-card sigan intactos. */
-
-
-/* --- 2. Estilo de la Barra Horizontal (La nueva "tarjeta") --- */
 .vuelo-row-horizontal {
-    display: flex; /* CLAVE: Distribuye los hijos (columnas) horizontalmente */
-    justify-content: space-between; /* Espacia los bloques de información */
-    align-items: center; /* Centra verticalmente el contenido */
-    background-color: #ffffff;
-    border: 1px solid #d0d0d0;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-    padding: 15px 25px;
-    width: 100%; /* Ocupa el 100% del ancho de #resultados-vuelos */
-    transition: box-shadow 0.2s, transform 0.2s;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(120deg, #ffffff, #f0f8ff);
+    border-radius: 15px;
+    padding: 1.2rem 2rem;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .vuelo-row-horizontal:hover {
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
-    transform: translateY(-2px);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.12);
 }
 
-/* --- 3. Estilos de las Columnas Internas --- */
-.vuelo-col {
-    padding: 0 10px;
-    /* Usamos flex-grow para asignar espacio de manera relativa */
-}
+/* Columnas internas */
+.vuelo-col { padding: 0 1rem; }
 
-/* Columna de Logo y Aerolínea */
 .aerolinea-info {
-    flex-grow: 1; /* Crece menos */
-    max-width: 150px;
+    flex: 1;
     text-align: center;
 }
 
 .aerolinea-logo {
     max-width: 60px;
     height: auto;
-    display: block;
-    margin: 0 auto 5px; /* Centra el logo */
+    margin: 0 auto 5px;
+    transition: transform 0.3s ease;
 }
 
-.aerolinea-nombre {
-    font-weight: bold;
-    color: #333;
-    font-size: 1em;
-    display: block;
-}
+.aerolinea-logo:hover { transform: scale(1.1); }
 
-/* Columnas de Ruta y Horario (la parte central) */
+.aerolinea-nombre { font-weight: 600; font-size: 1em; }
+
 .ruta-info, .horario-info {
-    flex-grow: 2; /* Les damos más espacio */
+    flex: 2;
     border-left: 1px solid #eee;
     padding-left: 20px;
 }
-.ruta-info p, .horario-info p {
-    margin: 5px 0;
-    font-size: 0.9em;
-}
-.ruta-info .duracion {
-    color: #999;
-    font-style: italic;
-    margin-top: 10px;
-}
 
+.ruta-info p, .horario-info p { margin: 5px 0; }
 
-/* Columna de Precio y Botón */
+.ruta-info .duracion { color: #0072ff; font-weight: 500; }
+
 .precio-col {
-    flex-grow: 1; /* Crece menos */
+    flex: 1;
     text-align: right;
     display: flex;
     flex-direction: column;
@@ -524,49 +251,106 @@ nav.nav ul {
 .precio-final {
     font-size: 2em;
     font-weight: bold;
-    color: #28a745; /* Precio destacado */
+    color: #ff5722;
     margin-bottom: 10px;
 }
 
 .btn-seleccionar {
-    background-color: #007bff;
+    background: linear-gradient(90deg, #0072ff, #00c6ff);
     color: white;
     border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
+    padding: 0.7rem 1.2rem;
+    border-radius: 10px;
     font-weight: bold;
-    transition: background-color 0.2s;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
-/* Centra el título "Vuelos disponibles" */
-.titulo-vuelos {
-    /* Asegura que el título ocupe todo el ancho disponible para poder centrarlo */
-    width: 100%;
-    
-    /* Centra el texto dentro del h2 */
+
+.btn-seleccionar:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 6px 15px rgba(0,114,255,0.3);
+}
+
+/* ===========================
+Destinos (tarjetas)
+=========================== */
+.destinos-section {
+    max-width: 1200px;
+    margin: 3rem auto;
+    padding: 2rem;
     text-align: center;
-    
-    /* Opcional: añade un poco de espacio si lo necesitas */
-    margin-top: 30px;
-    margin-bottom: 20px;
-    
-    /* Estilo visual para el título */
-    font-size: 2em;
-    color: #333; /* Color oscuro para el texto */
-}
-/* Columna de Logo y Aerolínea */
-.aerolinea-info {
-    /* ... otros estilos ... */
-    max-width: 150px;
-    /* ... otros estilos ... */
 }
 
-.aerolinea-logo {
-    /* Estas líneas son CRÍTICAS para que la imagen se vea: */
-    max-width: 60px; /* Tamaño que se le da al logo */
-    height: auto;
-    display: block;
-    margin: 0 auto 5px; 
+.destinos-section h2 { color: #0072ff; font-size: 2.2rem; margin-bottom: 2rem; }
+
+.destinos-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
 }
 
+.destino-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 12px 25px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
+.destino-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.destino-info { padding: 1rem 1.2rem; }
+
+.destino-card h3 { color: #0072ff; margin-bottom: 0.5rem; }
+
+.destino-card p { color: #555; font-size: 1rem; line-height: 1.4; }
+
+.destino-card:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 20px 35px rgba(0,114,255,0.2);
+}
+
+/* ===========================
+Footer moderno
+=========================== */
+footer {
+    background: #0072ff;
+    color: white;
+    padding: 2rem 1rem;
+    text-align: center;
+}
+
+footer h2.cc { font-size: 1.8rem; margin-bottom: 1rem; }
+
+footer p, footer a { color: white; }
+
+footer a:hover { color: #00c6ff; text-decoration: underline; }
+
+.footer-contenedor {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-contacto, .footer-devs { flex: 1; min-width: 250px; }
+
+.copy { margin-top: 30px; font-size: 0.9em; color: #cce7ff; }
+
+/* ===========================
+Responsive
+=========================== */
+@media (max-width: 768px) {
+    nav.nav ul { flex-direction: column; gap: 1rem; }
+    .slider img { height: 60px; }
+    .buscador-vuelos form { flex-direction: column; }
+    #resultados-vuelos { flex-direction: column; }
+    .vuelo-row-horizontal { flex-direction: column; align-items: flex-start; }
+    .precio-col { align-items: flex-start; text-align: left; border-left: none; padding-left: 0; margin-top: 10px; }
+}

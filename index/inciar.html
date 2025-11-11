@@ -1,43 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/styles/iniciar.css">
-    <title>Open World</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Iniciar Sesión - Open World</title>
+  <link rel="stylesheet" href="/styles/iniciar.css" />
 </head>
 
 <body>
+  <!-- Encabezado -->
+  <header class="header">
+    <h1>Agencia de Viajes Open World</h1>
+  </header>
 
-    <header class="header">
-    <a href="/index/index.html"><h1>Agencia de Viajes Open World</h1></a>
-  </header> 
-    <nav class="nav">
-        <nav class="nav">
+  <!-- Barra de navegación -->
+  <nav class="nav">
     <ul>
       <li><a href="index.html">Inicio</a></li>
-      <li><a href="inciar.html">Iniciar Sesión</a></li>
+      <li><a href="iniciar.html" class="active">Iniciar Sesión</a></li>
       <li><a href="hoteles.html">Hoteles</a></li>
-      <li><a href="vuelos.html  ">Vuelos</a></li>
-      <li><a href="#final">Contacto</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
     </ul>
   </nav>
-    </nav>
 
-    <div class="card">
-        <form>
-            <div>
-                <label for="Usuario">Usuario</label>
-                <input type="text" id="Usuario" name="Usuario">
-            </div>
-            <div>
-                <label for="Contraseña">Contraseña</label>
-                <input type="password" id="Contraseña" name="Contraseña">
-            </div>
-        </form>
+  <!-- Contenedor del formulario -->
+  <section class="form-container">
+    <form>
+      <label for="usuario">Usuario</label>
+      <input type="text" id="usuario" placeholder="Ingrese su usuario" required />
 
-        <div class="buttons">
-            <button><a href="index.html">Volver</a></button>
-            <button><a href="#">Registrarse</a></button>
+      <label for="password">Contraseña</label>
+      <input type="password" id="password" placeholder="Ingrese su contraseña" required />
+
+      <div class="btn-container">
+        <button type="button" class="btn btn-volver" onclick="window.location.href='index.html'">Volver</button>
+        <button type="submit" class="btn">Registrarse</button>
+      </div>
+    </form>
+  </section>
 </body>
+
+</html>
