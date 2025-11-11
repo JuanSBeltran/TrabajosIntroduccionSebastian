@@ -153,16 +153,28 @@ async function mostrarVuelos(destinoId, destinoNombre) {
         // Por ahora, solo mostramos la fecha de salida y la hora de llegada.
         
         const li = document.createElement("li");
-        li.classList.add("vuelo-card");
+        li.classList.add("vuelo-row-horizontal"); // CLASE MODIFICADA
         li.innerHTML = `
-            <img src="${vuelo.imagen_url || 'assets/placeholder.jpg'}" alt="Vuelo">
-            <p><strong>Destino:</strong> ${destinoNombre}</p>
-            <p><strong>Origen:</strong> ${vuelo.origen}</p>
-            <p><strong>Aerolínea:</strong> ${vuelo.aerolinea}</p>
-            <p><strong>Precio:</strong> $${vuelo.precio}</p>
-            <p><strong>Duración:</strong> ${vuelo.duracion}</p>
-            <p><strong>Salida:</strong> ${new Date(vuelo.fecha_salida).toLocaleDateString()} ${vuelo.hora_salida}</p>
-            <p><strong>Llegada:</strong> ${vuelo.hora_llegada}</p>
+            <div class="vuelo-col aerolinea-info">
+                <img src="${vuelo.imagen_url || 'assets/placeholder.jpg'}" alt="Logo Aerolínea" class="aerolinea-logo">
+                <span class="aerolinea-nombre">${vuelo.aerolinea}</span>
+            </div>
+
+            <div class="vuelo-col ruta-info">
+                <p><strong>De:</strong> ${vuelo.origen}</p>
+                <p><strong>A:</strong> ${destinoNombre}</p>
+                <p class="duracion">Duración: ${vuelo.duracion}</p>
+            </div>
+
+            <div class="vuelo-col horario-info">
+                <p><strong>Salida:</strong> ${new Date(vuelo.fecha_salida).toLocaleDateString()} ${vuelo.hora_salida}</p>
+                <p><strong>Llegada:</strong> ${vuelo.hora_llegada}</p>
+            </div>
+
+            <div class="vuelo-col precio-col">
+                <span class="precio-final">COP $${vuelo.precio.toLocaleString('es-CO')}</span>
+                <button class="btn-seleccionar">Seleccionar</button>
+            </div>
         `;
         resultados.appendChild(li);
     }

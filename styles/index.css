@@ -423,33 +423,150 @@ nav.nav ul {
     margin-top: 20px;
   }
 }
-
-/* Estilos para resultados de vuelos */
+/* --- 1. Contenedor General de Resultados --- */
+/* Esta regla es esencial para que las filas se apilen verticalmente y controlen el ancho */
 #resultados-vuelos {
+    display: flex;
+    flex-direction: column; 
+    gap: 15px; /* Espacio entre las filas de vuelo */
     list-style: none;
     padding: 0;
+    margin: 20px auto;
+    max-width: 95%; /* Ocupa casi todo el ancho de la pantalla */
 }
 
-.vuelo-card {
-    border: 1px solid #ddd;
+/* El estilo de .destinos-container (para los destinos de arriba) debe mantenerse así: */
+#lista-destinos.destinos-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    list-style: none;
+    margin: 20px auto;
+}
+/* Asegúrate de que tus estilos para .destino-card sigan intactos. */
+
+
+/* --- 2. Estilo de la Barra Horizontal (La nueva "tarjeta") --- */
+.vuelo-row-horizontal {
+    display: flex; /* CLAVE: Distribuye los hijos (columnas) horizontalmente */
+    justify-content: space-between; /* Espacia los bloques de información */
+    align-items: center; /* Centra verticalmente el contenido */
+    background-color: #ffffff;
+    border: 1px solid #d0d0d0;
     border-radius: 8px;
-    padding: 15px;
-    margin: 10px 0;
-    background: white;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    padding: 15px 25px;
+    width: 100%; /* Ocupa el 100% del ancho de #resultados-vuelos */
+    transition: box-shadow 0.2s, transform 0.2s;
 }
 
-.vuelo-card img {
-    max-width: 100%;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 4px;
+.vuelo-row-horizontal:hover {
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
 }
-.titulo-vuelos {
+
+/* --- 3. Estilos de las Columnas Internas --- */
+.vuelo-col {
+    padding: 0 10px;
+    /* Usamos flex-grow para asignar espacio de manera relativa */
+}
+
+/* Columna de Logo y Aerolínea */
+.aerolinea-info {
+    flex-grow: 1; /* Crece menos */
+    max-width: 150px;
     text-align: center;
-    font-size: 2rem;
-    margin-top: 40px;
-    margin-bottom: 20px;
-    font-weight: 600;
 }
+
+.aerolinea-logo {
+    max-width: 60px;
+    height: auto;
+    display: block;
+    margin: 0 auto 5px; /* Centra el logo */
+}
+
+.aerolinea-nombre {
+    font-weight: bold;
+    color: #333;
+    font-size: 1em;
+    display: block;
+}
+
+/* Columnas de Ruta y Horario (la parte central) */
+.ruta-info, .horario-info {
+    flex-grow: 2; /* Les damos más espacio */
+    border-left: 1px solid #eee;
+    padding-left: 20px;
+}
+.ruta-info p, .horario-info p {
+    margin: 5px 0;
+    font-size: 0.9em;
+}
+.ruta-info .duracion {
+    color: #999;
+    font-style: italic;
+    margin-top: 10px;
+}
+
+
+/* Columna de Precio y Botón */
+.precio-col {
+    flex-grow: 1; /* Crece menos */
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    border-left: 1px solid #eee;
+    padding-left: 20px;
+}
+
+.precio-final {
+    font-size: 2em;
+    font-weight: bold;
+    color: #28a745; /* Precio destacado */
+    margin-bottom: 10px;
+}
+
+.btn-seleccionar {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+/* Centra el título "Vuelos disponibles" */
+.titulo-vuelos {
+    /* Asegura que el título ocupe todo el ancho disponible para poder centrarlo */
+    width: 100%;
+    
+    /* Centra el texto dentro del h2 */
+    text-align: center;
+    
+    /* Opcional: añade un poco de espacio si lo necesitas */
+    margin-top: 30px;
+    margin-bottom: 20px;
+    
+    /* Estilo visual para el título */
+    font-size: 2em;
+    color: #333; /* Color oscuro para el texto */
+}
+/* Columna de Logo y Aerolínea */
+.aerolinea-info {
+    /* ... otros estilos ... */
+    max-width: 150px;
+    /* ... otros estilos ... */
+}
+
+.aerolinea-logo {
+    /* Estas líneas son CRÍTICAS para que la imagen se vea: */
+    max-width: 60px; /* Tamaño que se le da al logo */
+    height: auto;
+    display: block;
+    margin: 0 auto 5px; 
+}
+
 
